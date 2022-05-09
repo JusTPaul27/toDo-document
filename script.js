@@ -4,68 +4,80 @@ const task1 = new ToDo('Compra il latte ', ToDo.PRIORITY.Medium, ['spesa', 'frig
 
 const task2 = new ToDo('Compra la focaccia', ToDo.PRIORITY.Low, ['spesa', 'casa']);
 
-const task3 = new DeadLineToDo('Fai gli auguri a Nonna', new Date(2022, 6, 9), ToDo.PRIORITY.High, ['famiglia', 'compleanni']);
+const task3 = new DeadLineToDo('Fai gli auguri a Nonna', new Date(2022, 6, 10), ToDo.PRIORITY.High, ['famiglia', 'compleanni']);
 
 const task4 = new DeadLineToDo('Chiama Marco');
 
-const task5 = new DeadLineToDo('Vai a allenamento', null, ToDo.PRIORITY.High, ['Salute']);
+const task5 = new DeadLineToDo('Vai a allenamento', null, ToDo.PRIORITY.High, ['Salute', 'Dieta', 'Surf']);
 
 
 const toDoList = [task1, task2, task3, task4, task5];
 
-function displayToDo(toDoList) {
+function displayToDo() {
 
     const container = document.getElementById('todo-container');
 
     for (let i = 0; i < toDoList.length; i++) {
         const todo = toDoList[i];
 
-        const par = document.createElement('p');
+        const todoDiv = document.createElement('div');
+        todoDiv.classList.add('todo-div');
+        container.appendChild(todoDiv);
 
-        par.classList.add('list-element');
+        const firstContainer = document.createElement('div');
+        firstContainer.classList.add('first-container');
+        todoDiv.appendChild(firstContainer);
 
-        const node = document.createTextNode(todo.name);
+        const nameAndTagsContainer = document.createElement('div');
+        nameAndTagsContainer.classList.add('nt-container');
+        firstContainer.appendChild(nameAndTagsContainer)
 
-        const creationDateNode = document.createTextNode(todo.creationDate);
+        const todoNameSpan = document.createElement('span');
+        const nameNode = document.createTextNode(todo.name);
+        todoNameSpan.appendChild(nameNode);
+        nameAndTagsContainer.appendChild(todoNameSpan);
 
-        const priorityNode = document.createTextNode(" Priority " + todo._priority.name ) ;
+        const tagContainer = document.createElement('div');
+        tagContainer.classList.add('tag-container');
+        nameAndTagsContainer.appendChild(tagContainer)
 
-        const tagsNode = document.createTextNode(todo.tags);
 
-        const deadLineDateNode = document.createTextNode(' Da completare enro il: ' + todo.deadLineDate);
+        for (const tag of todo.tags) {   // PER OGNI TAG IN TODO.TAGS
+            
+           const tagSpan = document.createElement('span');
+           const tagNode = document.createTextNode(tag);
+           tagSpan.appendChild(tagNode);
+          tagContainer.appendChild(tagSpan);
+        }
+   
+        const doneButton = document.createElement('button');
 
-        const br = document.createElement('br')
+        const doneNode = document.createTextNode('completato');
 
-        par.appendChild(node);
+        doneButton.appendChild(doneNode);
 
-        par.appendChild(br);
+        firstContainer.appendChild(doneButton);
 
-        par.appendChild(tagsNode);
+        //date container -> VEDI funzione getFormattedDate in models
 
-        par.appendChild(br);
+        const dateContainer = document.createElement('div');
 
-        par.appendChild(creationDateNode);
+        dateContainer.classList.add('date-container')
 
-        par.appendChild(deadLineDateNode);
-      
-        par.appendChild(br);
+        todoDiv.appendChild(dateContainer);
+        const startDateSpan = document.createElement('span');
+        const startDateNode = document.createTextNode(ToDo.getFormattedDate(todo.creationDate));  ///ToDo vuole la maiuscola imn quanto funzione statica
+        startDateSpan.appendChild(startDateNode);
+        dateContainer.appendChild(startDateSpan);
 
-        par.appendChild(priorityNode);
-
-        container.appendChild(par);
-
+        if (todo.deadLineDate) {
+            
+            const endDateSpan = document.createElement('span');
+            const endDateNode = document.createTextNode(todo.deadLineDate.toISOString()); // Uso due formule diverse per differenziare e studiare    
+            endDateSpan.appendChild(endDateNode);  
+            dateContainer.appendChild(endDateSpan);
+        }
     }
 }
 
-displayToDo(toDoList)
-
-
-
-
-
-
-
-
-
-
-const doneList = [];
+displayToDo()

@@ -1,3 +1,31 @@
 html,body{
     background-color: rgba(234, 233, 233, 0.833)
 }
+
+
+.todo-div{
+    border-style: solid;
+    margin: 4px;
+    border-width: 1px;
+    padding: 4px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    background-color: aquamarine;
+}
+
+.date-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.first-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.nt-container{
+    display: flex;
+    flex-direction: column;
+}
+

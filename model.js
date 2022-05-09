@@ -43,6 +43,11 @@ class ToDo {
         return todoString;
     }
 
+   static getFormattedDate(date){
+       const dateString = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes();
+       return dateString
+   }
+
     // static fromPriorityToString(selectedPriority) {
     //     if (selectedPriority === 0) {
     //         return 'Low';

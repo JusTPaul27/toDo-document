@@ -6,11 +6,12 @@ html,body{
 .todo-container{
     border-style: solid;
     margin: 4px;
-    border-width: 4px;
+    border-width: 2px;
     padding: 4px;
     border-radius: 16px;
     display: flex;
     flex-direction: column;
+    box-shadow: 42px 34px 19px 12px rgba(0,0,0,0.1);
 }
 
 .date-container{
@@ -30,7 +31,8 @@ html,body{
 }
 
 .tag{
-    background-color: darkgoldenrod;
+    background-color: darkcyan;
+    color: whitesmoke;
     padding: 4px;
     margin: 4px;
     border-radius: 8px;
@@ -50,3 +52,6 @@ html,body{
     color: white;
 }
 
+.my-button:hover{
+    background-color: chocolate;
+}

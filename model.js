@@ -2,7 +2,7 @@ class ToDo {
 
     static PRIORITY = {
         Low: { order: 0, name: 'Bassa', color: 'green' },
-        Medium: { order: 1, name: 'Media', color: 'yellow' },
+        Medium: { order: 1, name: 'Media', color: 'darkgoldenrod' },
         High: { order: 2, name: 'Alta', color: 'Orange' },
         veryHigh: { order: 3, name: 'Molto alta', color: 'red' },
     }
